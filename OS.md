@@ -77,7 +77,51 @@ user interface library. This facilitates a common “look and feel” to users, 
 
 ## 1.2 Operating system design patterns
 
+1.3 The Kernel Abstraction
 
+1.3.1 The process concept
+
+A central role of operating systems is protection.
+
+• Reliability
+	For high system reliability, an operating system must bullet proof itself so that it 	operates correctly regardless of whatever an application or user might do.
+
+• Security
+	For example, if a malicious application is permitted to write directly to the disk, 	it could modify the file containing the operating system’s code, so that the next 	time the system starts, the modified operating system will boot instead, 	installing spyware and disabling virus protection. For security, an operating 	system must prevent untrusted code from modifying system state.
+
+• Privacy
+	an operating system must prevent untrusted code from accessing unauthorized 	data.
+
+• Efficiency
+	For efficiency and fairness, an operating system must be able to limit the 	amount of resources assigned to each application or user.
+
+Operating system kernel
+Implementing protection is the job of the operating system kernel. The kernel is the lowest level of software running on the system, with full access to all of the capabilities of the hardware. The operating system kernel runs directly on
+the processor with unlimited rights. Applications need to run on
+the processor with all potentially dangerous operations disabled. The kernel is necessarily trusted to do anything that can be done with the hardware. Everything else — that is, the untrusted software running on the system — is run in a restricted environment, with less than complete access to the full power of the hardware.
+*/
+In turn, applications themselves often need to safely execute untrusted third
+party code. An example is a web browser executing embedded Javascript to
+draw a web page. Without protection, a script with an embedded virus can take
+control of the browser, making the user think they are interacting directly with
+the web when in fact their web passwords are being forwarded to an attacker.
+*/
+Process
+The execution of an application program with restricted rights is called a process.
+A process’s access to hardware is mediated and checked by the operating system kernel.
+The difference between a process and a program is that a process is an instance of a program.
+A “process” was originally coined to mean what we now call a “thread”.
+A process executes a program, consisting of one or more threads running inside a protection boundary.
+Executable image
+a programmer types up some code in some appropriately high-level language. A compiler converts that code into a sequence of machine instructions, and stores those
+instructions into a file, called the executable image of the program. The compiler
+also defines any static data the program needs, along with their initial values,
+and includes them in the executable image. To start the program running, the operating system copies the program instructions and data from the executable image into physical memory.
+
+Process Control Block
+The process control block stores all the information the operating system needs about a particular process:where it is stored in memory, where its executable image is on disk, which user asked it to start executing, what privileges the process has, and so forth.
+
+1.3.1 Dual-mode operation
 
 
 
