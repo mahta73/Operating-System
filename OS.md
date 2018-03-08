@@ -31,6 +31,7 @@ Although this might seem far fetched, researchers recently demonstrated that the
 
 A goal of this thesis is to explain how to build more reliable and secure computer systems in a variety of contexts.
 
+
 Precisely because operating systems concepts are among the most difficult in all of computer science, it is also important to understand how these ideas are applied in practice in real operating systems of today.
 
 # Chapter 1
@@ -122,6 +123,47 @@ Process Control Block
 The process control block stores all the information the operating system needs about a particular process:where it is stored in memory, where its executable image is on disk, which user asked it to start executing, what privileges the process has, and so forth.
 
 1.3.1 Dual-mode operation
+Hardware support to differentiate between at least two modes of operations, mode bit added to computer hardware to indicate the current mode.
+
+	1. user mode: execution done on behalf of a user (1)
+	2. kernel mode: execution done on behalf of operating system (0)
+
+In user mode, the processor checks each instruction before executing it to verify that the instruction is permitted to be performed by that process. 
+In kernel-mode, the operating system executes with protection checks turned off.
+
+At a minimum, the hardware must support three things:
+
+1. Privileged instructions: All potentially unsafe instructions are prohibited when executing in user-mode.
+
+Instructions available in kernel-mode, but not in user-mode, privileged instructions.
+
+Process isolation is only possible if there is a way to limit programs running in user-mode from directly changing their privilege level.
+The application cannot be allowed to change the set of memory locations it can access
+Another limitation on applications is that they cannot disable processor interrupts.
+
+2. Memory protection: All memory accesses outside of a process’s valid
+memory region are prohibited when executing in user-mode.
+
+3. Timer interrupts: Regardless of what the process does, the kernel must have a way to periodically regain control from the current process.
+
+
+Memory Protection
+Operating system must provide memory protection. In order to have memory
+protection, add two registers that determine the range of legal addresses a program
+may access:
+base register: holds the smallest legal physical memory address.
+Limit register: contains the size of the range
+memory outside the defined range is protected.
+
+system calls
+system calls provide the interface between a running program and the operating system.
+Three general methods are used to pass parameters between a running program 
+and the operating system:
+1. pass parameters in registers.
+2. store the parameters in a table in memory, and the table address is passed
+as a parameter in a register
+3. push (store) the parameters onto the stack by the program, and pop off the stack
+by the operating system.
 
 
 
