@@ -1,5 +1,5 @@
 
-*** What is an operating system? ***
+***What is an operating system?***
 
 An operating system is the layer of software that  manages a computer’s resources for its users and their applications.
 
@@ -39,7 +39,7 @@ Operating system provides a set of common, standard services to applications 	to
 Another standard service in most modern operating systems is the graphical
 user interface library. This facilitates a common “look and feel” to users, so that 	frequent operations such as pull down menus and “cut” and “paste” are 	handled consistently across applications.
 
-*** Operating system design patterns ***
+***Operating system design patterns***
 
 A central role of operating systems is protection.
 
@@ -55,7 +55,7 @@ A central role of operating systems is protection.
 5. Efficiency  
 	For efficiency and fairness, an operating system must be able to limit the 	amount of resources assigned to each application or user.
 
-*** Operating system kernel ***
+***Operating system kernel***
 
 Implementing protection is the job of the operating system kernel. The kernel is the lowest level of software running on the system, with full access to all of the capabilities of the hardware. The operating system kernel runs directly on the processor with unlimited rights.  
 Applications need to run on the processor with all potentially dangerous operations disabled.  
@@ -69,7 +69,7 @@ draw a web page. Without protection, a script with an embedded virus can take
 control of the browser, making the user think they are interacting directly with
 the web when in fact their web passwords are being forwarded to an attacker.
 ```
-*** Process ***
+***Process***
 
 The execution of an application program with restricted rights is called a process.
 A process’s access to hardware is mediated and checked by the operating system kernel.  
@@ -77,7 +77,7 @@ The difference between a process and a program is that a process is an instance 
 A “process” was originally coined to mean what we now call a “thread”.    
 A process executes a program, consisting of one or more threads running inside a protection boundary.
 
-*** Executable image ***
+***Executable image***
 
 a programmer types up some code in some appropriately high-level language. A compiler converts that code into a sequence of machine instructions, and stores those
 instructions into a file, called the executable image of the program.
@@ -87,11 +87,11 @@ and includes them in the executable image.
 
 To start the program running, the operating system copies the program instructions and data from the executable image into physical memory.
 
-*** Process Control Block ***
+***Process Control Block***
 
 The process control block stores all the information the operating system needs about a particular process: where it is stored in memory, where its executable image is on disk, which user asked it to start executing, what privileges the process has, and so forth.
 
-*** Dual-mode operation ***
+***Dual-mode operation***
 
 Hardware support to differentiate between at least two modes of operations, mode bit added to computer hardware to indicate the current mode.
 
@@ -116,7 +116,7 @@ memory region are prohibited when executing in user-mode.
 3. Timer interrupts: Regardless of what the process does, the kernel must have a way to periodically regain control from the current process.
 
 
-*** Memory Protection ***
+***Memory Protection***
 
 Operating system must provide memory protection. In order to have memory
 protection, add two registers that determine the range of legal addresses a program
@@ -139,7 +139,7 @@ as a parameter in a register
 3. push (store) the parameters onto the stack by the program, and pop off the stack
 by the operating system.
 
-*** What is concurrency? ***
+***What is concurrency?***
 
 	At the simplest and most basic level, concurrency is about two or more separate
 	activities at the same time.
@@ -161,7 +161,7 @@ by the operating system.
 	The number of hardware threads (The measure of how many independent tasks the hardware can
 	genuinely run concurrently) is an important factor to consider.
 
-*** Approaches to  concurrency ***
+***Approaches to  concurrency***
 
 	1. Concurrency with multiple-processes
 

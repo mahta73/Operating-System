@@ -29,3 +29,9 @@ Although this might seem far fetched, researchers recently demonstrated that the
 A goal of this thesis is to explain how to build more reliable and secure computer systems in a variety of contexts.
 
 Precisely because operating systems concepts are among the most difficult in all of computer science, it is also important to understand how these ideas are applied in practice in real operating systems of today.
+
+## References
+1. Operating Systems Principles and Practice
+2. C++ Concurrent In Action, Anthony Williams
+3. https://www.techopedia.com/definition/8921/portability
+4. http://informatik.unibas.ch/uploads/media/cs201-20131018c-2up.pdf
