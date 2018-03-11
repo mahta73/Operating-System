@@ -10,7 +10,7 @@ I believe the concepts and principles of operating system are important for anyo
 
 The core ideas in operating systems protection, concurrency, virtualization, resource allocation, and reliable storage are widely used throughout computer science.
 
-Anyone trying to build resilient, secure,flexible computer systems needs to have a deep grounding in these topics and to be able to apply these concepts in a variety of settings.    
+Anyone trying to build resilient, secure, flexible computer systems needs to have a deep grounding in these topics and to be able to apply these concepts in a variety of settings.    
 This is especially true in a modern world where nearly everything a user does is distributed, and nearly every computer is multi-core.
 
 Operating systems concepts are popping up in many different areas; even web browsers and cloud computing platforms have become mini-operating systems in their own right.
@@ -30,8 +30,23 @@ A goal of this thesis is to explain how to build more reliable and secure comput
 
 Precisely because operating systems concepts are among the most difficult in all of computer science, it is also important to understand how these ideas are applied in practice in real operating systems of today.
 
+## How to run the program?
+
+Original C++ Standard supported only single thread programming.  
+The new C++ Standard (referred to as C++11 or C++0x) was published in 2011.  
+In C++11 a new thread library is introduced.  
+
+***Compilers Required:***    
+***Linux:*** gcc 4.8.1 (Complete Concurrency support)  
+***Windows:*** Visual Studio 2012 and MingW  
+
+***How to compile on Linux:***   
+$ g++ -std=c++11 -pthread your_file.cpp -o Your_program  
+$ ./Your_program
+
 ## References
 1. Operating Systems Principles and Practice
 2. C++ Concurrent In Action, Anthony Williams
-3. https://www.techopedia.com/definition/8921/portability
-4. http://informatik.unibas.ch/uploads/media/cs201-20131018c-2up.pdf
+3. http://thispointer.com/
+4. https://www.techopedia.com/definition/8921/portability
+5. http://informatik.unibas.ch/uploads/media/cs201-20131018c-2up.pdf

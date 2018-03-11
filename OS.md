@@ -183,26 +183,3 @@ by the operating system.
 	But all threads in a process share the same address space, and most of the data can be accessed directly from all threads.
 
 	` thread1 -> shared memory <- thread2 `
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-References
-1.
