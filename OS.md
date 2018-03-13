@@ -68,7 +68,7 @@ The kernel is necessarily trusted to do anything that can be done with the hardw
 
 
 ```NOTE:  
-In turn, applications themselves often need to safely execute untrusted third party   code. An example is a web browser executing embedded Javascript to draw a web page.   Without protection, a script with an embedded virus can take control of the browser,   making the user think they are interacting directly with the web when in fact their   web passwords are being forwarded to an attacker.  
+In turn, applications themselves often need to safely execute untrusted third party     code. An example is a web browser executing embedded Javascript to draw a   web page.   Without protection, a script with an embedded virus can take control of   the browser,   making the user think they are interacting directly with the web when   in fact their   web passwords are being forwarded to an attacker.    
 ```
 ***Process***
 
