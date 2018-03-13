@@ -67,7 +67,8 @@ Applications need to run on the processor with all potentially dangerous operati
 The kernel is necessarily trusted to do anything that can be done with the hardware. Everything else — that is, the untrusted software running on the system — is run in a restricted environment, with less than complete access to the full power of the hardware.
 
 
-```NOTE:  
+```
+NOTE:  
 In turn, applications themselves often need to safely execute untrusted third party     code. An example is a web browser executing embedded Javascript to draw a   web page.   Without protection, a script with an embedded virus can take control of   the browser,   making the user think they are interacting directly with the web when   in fact their   web passwords are being forwarded to an attacker.    
 ```
 ***Process***
@@ -165,7 +166,7 @@ by the operating system.
 
 	These separate processes can then pass messages to each other through interprocess communication channels (signals, sockets, files, pipes, and so on)  
 
-	` precess1 -> interprocess communication <- process2 `  
+	 precess1 -> interprocess communication <- process2   
 
 
 	2. Concurrency with multiple-threads  
@@ -176,4 +177,4 @@ by the operating system.
 
 	But all threads in a process share the same address space, and most of the data can be accessed directly from all threads.  
 
-	` thread1 -> shared memory <- thread2 `
+	 thread1 -> shared memory <- thread2 
