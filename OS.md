@@ -66,11 +66,15 @@ Applications need to run on the processor with all potentially dangerous operati
 
 The kernel is necessarily trusted to do anything that can be done with the hardware. Everything else — that is, the untrusted software running on the system — is run in a restricted environment, with less than complete access to the full power of the hardware.
 
+```
+NOTE:  
+In turn, applications themselves often need to safely execute untrusted third party  
+code. An example is a web browser executing embedded Javascript to draw a  web page.
+Without protection, a script with an embedded virus can take control of the browser,
+making the user think they are interacting directly with the web when in  fact their
+web passwords are being forwarded to an attacker.    
+```
 
-	```
-	NOTE:  
-	In turn, applications themselves often need to safely execute untrusted third party  code. An example is a web browser executing embedded Javascript to draw a  web page. Without protection, a script with an embedded virus can take control of   the browser, making the user think they are interacting directly with the web when in  fact their web passwords are being forwarded to an attacker.    
-	```
 ***Process***
 
 The execution of an application program with restricted rights is called a process.
@@ -156,7 +160,7 @@ Computers with multicore processors are capable of genuinely running more than o
 
 Though the availability in the hardware is most obvious with multiple processor or multicore systems, some processors can execute multiple threads on a single core.  
 
-	The number of hardware threads (The measure of how many independent tasks the hardware can genuinely run concurrently) is an important factor to consider.  
+The number of hardware threads (The measure of how many independent tasks the hardware can genuinely run concurrently) is an important factor to consider.  
 
 ***Approaches to  concurrency***
 
