@@ -5,7 +5,7 @@ An operating system is the layer of software that  manages a computer’s resour
 
 Operating systems have three roles:
 
-* Resource sharing: Operating systems play referee.
+* ***Resource sharing: Operating systems play referee.***
 
 1. manage shared resources.
 
