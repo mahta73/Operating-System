@@ -3,13 +3,13 @@
 
 An operating system is the layer of software that  manages a computer’s resources for its users and their applications.
 
-Operating systems have three roles:
+***Operating systems have three roles:***
 
 * ***Resource sharing: Operating systems play referee.***
 
 1. manage shared resources.
 
-The operating system must protect itself and other applications from malicious computer viruses. And since the applications are sharing physical resources, the operating system needs to decide which applications get which resources.
+	The operating system must protect itself and other applications from malicious computer viruses. And since the applications are sharing physical resources, the operating system needs to decide which applications get which resources.
 
 2. isolate different applications from each other, so that if there is a bug in one application, it does not corrupt other applications.
 
