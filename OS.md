@@ -99,22 +99,54 @@ The process control block stores all the information the operating system needs 
 
 ***Dual-mode operation***
 
+A very simple, safe, and entirely hypothetical approach would be to have the operating system kernel simulate, step by step, every instruction in every user process.    
+Instead of the processor directly executing instructions, each instruction in a user program would be fetched, decoded, and executed by a software interpreter.
+
+```
+Interpreter (computing) In computer science, an interpreter is a computer program that directly executes, i.e. performs, instructions written in a programming or scripting language, without requiring them previously to have been compiled into a machine language program.
+```
+
+Before each instruction is executed, the interpreter could check to see if the process had permission to do the operation. The interpreter could allow all legal operations while halting any application that overstepped its bounds.  
+
+Now suppose we want to speed up our hypothetical simulator. Most instruc-
+tions are perfectly safe, such as adding two registers together and storing the
+result into a third register. Can we modify the processor in some way to allow
+safe instructions to execute directly on the hardware?  
+
+To accomplish this, we can implement the same checks as in our hypothetical
+interpreter, but we do so in hardware rather than software. This is called dual-
+mode operation.  
+
 Hardware support to differentiate between at least two modes of operations, mode bit added to computer hardware to indicate the current mode.
 
-1. user mode: execution done on behalf of a user (1)
-2. kernel mode: execution done on behalf of operating system (0)
+1. user mode: execution done on behalf of a user (single bit in the processor status register = 1)  
+2. kernel mode: execution done on behalf of operating system (single bit in the processor status register = 0)  
 
 In user mode, the processor checks each instruction before executing it to verify that the instruction is permitted to be performed by that process.  
 In kernel-mode, the operating system executes with protection checks turned off.
 
-At a minimum, the hardware must support three things:  
+At a minimum, the hardware must support three things:
+
 1. Privileged instructions: All potentially unsafe instructions are prohibited when executing in user-mode.
 
-	Instructions available in kernel-mode, but not in user-mode, privileged instructions.  
-	Process isolation is only possible if there is a way to limit programs running in user-mode from directly changing their privilege level.
+	Instructions available in kernel-mode, but not in user-mode, are called privileged instructions.
 
+	Process isolation is only possible if there is a way to limit programs running in user-mode from directly changing their privilege level.
+	Processes can indirectly change their privilege level by executing a special
+	instruction called a system call to transfer control into the kernel at a fixed
+	location specified by the operating system. Other than trapping into the operating
+	system kernel (that is, in effect, becoming the kernel) at these fixed locations,
+	an application process cannot be allowed to change its privilege level.
+
+	```
 	The application cannot be allowed to change the set of memory locations it can access
 	Another limitation on applications is that they cannot disable processor interrupts.
+
+	What happens if an application attempts to access memory it shouldn’t or
+	attempts to change its privilege level?   
+	Such actions cause a processor exception.
+	Interpreter (computing) In computer science, an interpreter is a computer program that directly executes, i.e. performs, instructions written in a programming or scripting language, without requiring them previously to have been compiled into a machine language program.  
+	```
 
 2. Memory protection: All memory accesses outside of a process’s valid
 memory region are prohibited when executing in user-mode.
@@ -124,13 +156,44 @@ memory region are prohibited when executing in user-mode.
 
 ***Memory Protection***
 
+The application needs to be in memory in order to execute, while the operating system needs to be in memory to be able to start the program, as well as to handle any
+system calls, interrupts, or exceptions.  
+
+How does the operating system prevent a user program from accessing parts
+of physical memory?  
+
 Operating system must provide memory protection. In order to have memory
 protection, add two registers that determine the range of legal addresses a program
 may access:
 
 base register: holds the smallest legal physical memory address.  
 
-Limit register: contains the size of the range memory outside the defined range is protected.
+Limit register(bound): contains the size of the range memory outside the defined range is protected.
+
+These registers can only be changed by privileged instructions, that is, by the operating system executing in kernel-mode.  
+Every time the processor fetches an instruction, the address of the program
+counter is checked to see if it lies between the base and the bound registers.
+If it doesn't lie between the base and bound registers, the hardware raises an
+exception, the program is halted, and control is transferred back to the operating
+system kernel.  
+Likewise, for instructions that read or write data to memory, each memory
+reference is also checked against the base and bounds registers.
+
+```
+The operating system kernel executes without the base and bounds registers
+```
+
+Although the base and bounds mechanism is sufficient for implementing
+protection, it is unable to provide some important features:  
+
+	1. Expandable heap and stack.  
+	2. Memory sharing.  
+	3. Non-relative memory addresses.  
+	4. Memory fragmentation.  
+	As processes are loaded and removed from memory, the free memory space is broken into little pieces. It happens after sometimes that processes cannot be allocated to memory blocks considering their small size and memory blocks remains unused.  
+
+For these reasons, most modern processors introduce a level of indirection,
+called virtual addresses.
 
 ***system calls***
 
