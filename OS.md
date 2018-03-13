@@ -13,27 +13,30 @@ An operating system is the layer of software that  manages a computer’s resour
 
 2. isolate different applications from each other, so that if there is a bug in one application, it does not corrupt other applications.
 
-#### Sharing raises several challenges for an operating system:
+***Sharing raises several challenges for an operating system:***
 
 1. Resource Allocation.  
-	1. Time Multiplexing: Programs or users take turns i.e. only one at a time.   	Example:Printer.  
-	2. Space Multiplexing: Instead of completing one by one, each one get some 	part of the resource.  
+	1. Time Multiplexing: Programs or users take turns i.e. only one at a time.     	Example:Printer.  
+	2. Space Multiplexing: Instead of completing one by one, each one get some 	part of the resource.    
 	Example:Main Memory  
-2. Isolation.
-	An error in one application should not disrupt other applications, or even the 	operating system itself. This is called fault isolation.  
+2. Isolation.  
+	An error in one application should not disrupt other applications, or even the 	operating system itself. This is called fault isolation.    
 	Fault isolation requires restricting the behavior of applications to less than
 	the full power of the underlying hardware.  
 3. Communication.  
 	The flip side of isolation is the need for communication between different 	applications and between different users. In setting up boundaries, an operating system must also allow for those boundaries to be crossed in carefully controlled ways as the need arises.
 
-### 2. Mask hardware limitations: Operating systems play illusionist.
+* ***Mask hardware limitations: Operating systems play illusionist.***
 
 Operating Systems  provide an abstraction physical hardware to simplify application design.
 
-Operating systems provide the illusion of a nearly infinite memory, as an abstraction on top of a limited amount of physical memory. Likewise, operating systems provide the illusion that each program has the computer’s processors entirely to itself. Obviously,the reality is quite different! These illusions enable applications to be written independently of the amount of physical memory on the system or the physical number of processors. The operating system does so through a concept called virtualization. With the right hardware and operating system support, most physical resources can be virtualized. Even the type of processor can be virtualized.  
-Some operating systems virtualize the entire computer, to run the operating system as an application running on top of another operating system. This is called creating a virtual machine. The operating system running in the 	virtual machine,called the guest, operating system, thinks it is running on a real,physical machine, but this is an illusion presented by the true operating system running underneath. Another reason for virtual machines is as an aid in debugging. Moreover, the illusion of atomic updates to data structures is provided by the operating system using some specialized mechanisms providedin hardware.
+Operating systems provide the illusion of a nearly infinite memory, as an abstraction on top of a limited amount of physical memory. Likewise, operating systems provide the illusion that each program has the computer’s processors entirely to itself. Obviously,the reality is quite different! These illusions enable applications to be written independently of the amount of physical memory on the system or the physical number of processors. The operating system does so through a concept called virtualization. With the right hardware and operating system support, most physical resources can be virtualized. Even the type of processor can be virtualized.
 
-### 3. Common services: Operating systems provide glue.
+Some operating systems virtualize the entire computer, to run the operating system as an application running on top of another operating system. This is called creating a virtual machine. The operating system running in the 	virtual machine,called the guest, operating system, thinks it is running on a real,physical machine, but this is an illusion presented by the true operating system running underneath.
+
+Another reason for virtual machines is as an aid in debugging. Moreover, the illusion of atomic updates to data structures is provided by the operating system using some specialized mechanisms providedin hardware.
+
+* ***Common services: Operating systems provide glue.***
 
 Operating system provides a set of common, standard services to applications 	to simplify and regularize their design. An important reason for the operating 	system to provide common services  is to facilitate sharing between	applications.  
 Another standard service in most modern operating systems is the graphical
@@ -57,23 +60,21 @@ A central role of operating systems is protection.
 
 ***Operating system kernel***
 
-Implementing protection is the job of the operating system kernel. The kernel is the lowest level of software running on the system, with full access to all of the capabilities of the hardware. The operating system kernel runs directly on the processor with unlimited rights.  
+Implementing protection is the job of the operating system kernel. The kernel is the lowest level of software running on the system, with full access to all of the capabilities of the hardware. The operating system kernel runs directly on the processor with unlimited rights.
+
 Applications need to run on the processor with all potentially dangerous operations disabled.  
+
 The kernel is necessarily trusted to do anything that can be done with the hardware. Everything else — that is, the untrusted software running on the system — is run in a restricted environment, with less than complete access to the full power of the hardware.
 
 
 ```NOTE:  
-In turn, applications themselves often need to safely execute untrusted third
-party code. An example is a web browser executing embedded Javascript to
-draw a web page. Without protection, a script with an embedded virus can take
-control of the browser, making the user think they are interacting directly with
-the web when in fact their web passwords are being forwarded to an attacker.
+In turn, applications themselves often need to safely execute untrusted third party code. An example is a web browser executing embedded Javascript to draw a web page. Without protection, a script with an embedded virus can take control of the browser, making the user think they are interacting directly with the web when in fact their web passwords are being forwarded to an attacker.
 ```
 ***Process***
 
 The execution of an application program with restricted rights is called a process.
-A process’s access to hardware is mediated and checked by the operating system kernel.  
-The difference between a process and a program is that a process is an instance of a program.
+A process’s access to hardware is mediated and checked by the operating system kernel. The difference between a process and a program is that a process is an instance of a program.
+
 A “process” was originally coined to mean what we now call a “thread”.    
 A process executes a program, consisting of one or more threads running inside a protection boundary.
 
@@ -104,11 +105,11 @@ In kernel-mode, the operating system executes with protection checks turned off.
 At a minimum, the hardware must support three things:  
 1. Privileged instructions: All potentially unsafe instructions are prohibited when executing in user-mode.
 
-Instructions available in kernel-mode, but not in user-mode, privileged instructions.  
-Process isolation is only possible if there is a way to limit programs running in user-mode from directly changing their privilege level.
+	Instructions available in kernel-mode, but not in user-mode, privileged instructions.  
+	Process isolation is only possible if there is a way to limit programs running in user-mode from directly changing their privilege level.
 
-The application cannot be allowed to change the set of memory locations it can access
-Another limitation on applications is that they cannot disable processor interrupts.
+	The application cannot be allowed to change the set of memory locations it can access
+	Another limitation on applications is that they cannot disable processor interrupts.
 
 2. Memory protection: All memory accesses outside of a process’s valid
 memory region are prohibited when executing in user-mode.
@@ -126,7 +127,7 @@ base register: holds the smallest legal physical memory address.
 
 Limit register: contains the size of the range memory outside the defined range is protected.
 
-*** system calls ***
+***system calls***
 
 system calls provide the interface between a running program and the operating system.
 Three general methods are used to pass parameters between a running program
