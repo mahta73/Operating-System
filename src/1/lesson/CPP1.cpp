@@ -29,10 +29,11 @@
   #include <iostream>
   // the functions and classes for managing threads are declared in <thread>.
   #include <thread>
+  
   using namespace std;
 
   // Every thread has to have an initial function, which is where the new thread of execution begins.
-  void hello() {
+  void thread_function() {
     std::cout << "Hello Concurrent world \n";
   }
 
@@ -40,7 +41,7 @@
   int main() {
     // threads are specified in the constructor of a std :: thread
     // The initial thread that starts at main() and the new thread that starts at hello()
-    std::thread t(hello);
+    std::thread t(thread_function);
     // join() causes the calling thread to wait for the thread asociated with the std :: thread object
     // to finish.
     t.join();

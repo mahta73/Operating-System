@@ -1,7 +1,8 @@
   // Creating a thread using Function Pointer
-  
+
   #include <iostream>
   #include <thread>
+  
   using namespace std;
 
   void initial_function() {
