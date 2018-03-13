@@ -67,10 +67,10 @@ Applications need to run on the processor with all potentially dangerous operati
 The kernel is necessarily trusted to do anything that can be done with the hardware. Everything else — that is, the untrusted software running on the system — is run in a restricted environment, with less than complete access to the full power of the hardware.
 
 
-```
-NOTE:  
-In turn, applications themselves often need to safely execute untrusted third party     code. An example is a web browser executing embedded Javascript to draw a   web page.   Without protection, a script with an embedded virus can take control of   the browser,   making the user think they are interacting directly with the web when   in fact their   web passwords are being forwarded to an attacker.    
-```
+	```
+	NOTE:  
+	In turn, applications themselves often need to safely execute untrusted third party  code. An example is a web browser executing embedded Javascript to draw a  web page. Without protection, a script with an embedded virus can take control of   the browser, making the user think they are interacting directly with the web when in  fact their web passwords are being forwarded to an attacker.    
+	```
 ***Process***
 
 The execution of an application program with restricted rights is called a process.
@@ -143,18 +143,18 @@ by the operating system.
 
 ***What is concurrency?***
 
-	At the simplest and most basic level, concurrency is about two or more separate
-	activities at the same time.  
+At the simplest and most basic level, concurrency is about two or more separate
+activities at the same time.  
 
-	When we talk about concurrency in terms of computers,we mean a single system performing multiple independent activities in parallel,rather than sequentially, or one after the other.  
+When we talk about concurrency in terms of computers,we mean a single system performing multiple independent activities in parallel,rather than sequentially, or one after the other.  
 
-	Historically, most computers have had one processor, with a single processing unit
-	or core. Such a machine can really only perform one task at a time, but it can switch
-	between tasks many times per second. This is called task switching. In order to do the interleaving, the system has to perform a context switch every time it changes from one task to another.We still talk about concurrency (illusion of concurrency) with such systems; because the task switches are so fast.  
+Historically, most computers have had one processor, with a single processing unit
+or core. Such a machine can really only perform one task at a time, but it can switch
+between tasks many times per second. This is called task switching. In order to do the interleaving, the system has to perform a context switch every time it changes from one task to another.We still talk about concurrency (illusion of concurrency) with such systems; because the task switches are so fast.  
 
-	Computers with multicore processors are capable of genuinely running more than one task in parallel.We call this hardware concurrency.  
+Computers with multicore processors are capable of genuinely running more than one task in parallel.We call this hardware concurrency.  
 
-	Though the availability in the hardware is most obvious with multiple processor or multicore systems, some processors can execute multiple threads on a single core.  
+Though the availability in the hardware is most obvious with multiple processor or multicore systems, some processors can execute multiple threads on a single core.  
 
 	The number of hardware threads (The measure of how many independent tasks the hardware can genuinely run concurrently) is an important factor to consider.  
 
@@ -166,7 +166,9 @@ by the operating system.
 
 	These separate processes can then pass messages to each other through interprocess communication channels (signals, sockets, files, pipes, and so on)  
 
-	precess1 -> interprocess communication <- process2   
+	```
+	precess1 -> interprocess communication <- process2
+	```   
 
 
 2. Concurrency with multiple-threads  
@@ -177,4 +179,6 @@ by the operating system.
 
 	But all threads in a process share the same address space, and most of the data can be accessed directly from all threads.  
 
-	 thread1 -> shared memory <- thread2
+	```
+	thread1 -> shared memory <- thread2
+	```
