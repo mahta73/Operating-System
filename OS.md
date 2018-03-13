@@ -160,16 +160,16 @@ by the operating system.
 
 ***Approaches to  concurrency***
 
-	1. Concurrency with multiple-processes
+1. Concurrency with multiple-processes
 
 	The first way to make use of concurrency within an application is to divide the application into multiple, separate single threaded processes that are run at the same time.  
 
 	These separate processes can then pass messages to each other through interprocess communication channels (signals, sockets, files, pipes, and so on)  
 
-	 precess1 -> interprocess communication <- process2   
+	precess1 -> interprocess communication <- process2   
 
 
-	2. Concurrency with multiple-threads  
+2. Concurrency with multiple-threads  
 
 	The alternative approach to concurrency is to run multiple threads in a singl process.  
 
@@ -177,4 +177,4 @@ by the operating system.
 
 	But all threads in a process share the same address space, and most of the data can be accessed directly from all threads.  
 
-	 thread1 -> shared memory <- thread2 
+	 thread1 -> shared memory <- thread2
