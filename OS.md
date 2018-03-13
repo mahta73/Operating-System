@@ -122,8 +122,8 @@ mode operation.
 
 Hardware support to differentiate between at least two modes of operations, mode bit added to computer hardware to indicate the current mode.
 
-1. user mode: execution done on behalf of a user (single bit in the processor status register = 1)  
-2. kernel mode: execution done on behalf of operating system (single bit in the processor status register = 0)  
+1. user mode: execution done on behalf of a user (single bit in the processor status register = 0)  
+2. kernel mode: execution done on behalf of operating system (single bit in the processor status register = 1)  
 
 In user mode, the processor checks each instruction before executing it to verify that the instruction is permitted to be performed by that process.  
 In kernel-mode, the operating system executes with protection checks turned off.
@@ -241,6 +241,14 @@ Each program has its own mapping.
 
 4. Share Data: We can use the same mapping to allow programs to share data by simply having their maps point to the same data.  
 
+***Timer interrupts***
+
+Process isolation also requires that the hardware provide a way for the operating system kernel to periodically regain control of the processor.  
+
+Almost all computer systems include a device called a ***hardware timer*** which can be set to interrupt the processor after a specified delay, either in time or timer after some number of instructions have been executed.
+
+Resetting the timer is a privileged operation, accessible only within the kernel, so that the user-level process cannot inadvertently or maliciously disable the timer.
+
 ***System Calls***
 
 system calls provide the interface between a running program and the operating system.
@@ -254,6 +262,24 @@ as a parameter in a register
 3. push (store) the parameters onto the stack by the program, and pop off the stack
 by the operating system.
 
+
+```
+LETS CODE :)
+
+int staticVar = 0;
+main () {
+int localVar = 0;
+/* a static variable */
+/* a procedure local variable */
+staticVar += 1;
+localVar += 1;
+sleep (10); /* this causes the program to wait for 10 seconds */
+printf ( ‘ ‘ static address : %x , value : % d \ n ’ ’ , & staticVar , staticVar );
+printf ( ‘ ‘ procedure local address : %x , value : % d \ n ’ ’ , & localVar , localVar );
+}
+> static address : 5328 , value : 1
+> procedure local address : ffffffe2 , value : 1
+```
 ***What is concurrency?***
 
 At the simplest and most basic level, concurrency is about two or more separate
