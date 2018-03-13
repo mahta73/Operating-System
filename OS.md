@@ -5,7 +5,7 @@ An operating system is the layer of software that  manages a computer’s resour
 
 Operating systems have three roles:
 
-### 1. Resource sharing: Operating systems play referee.
+* Resource sharing: Operating systems play referee.
 
 1. manage shared resources.
 
@@ -144,15 +144,11 @@ by the operating system.
 	At the simplest and most basic level, concurrency is about two or more separate
 	activities at the same time.
 
-	When we talk about concurrency in terms of computers,we mean a single system performing
-	multiple independent activities in parallel,rather than sequentially, or one after the other.
+	When we talk about concurrency in terms of computers,we mean a single system performing multiple independent activities in parallel,rather than sequentially, or one after the other.
 
 	Historically, most computers have had one processor, with a single processing unit
 	or core. Such a machine can really only perform one task at a time, but it can switch
-	between tasks many times per second. This is called task switching. In order to do the
-	interleaving, the system has to perform a context switch every time it changes from one
-	task to another.We still talk about concurrency (illusion of concurrency) with such
-	systems; because the task switches are so fast.
+	between tasks many times per second. This is called task switching. In order to do the interleaving, the system has to perform a context switch every time it changes from one task to another.We still talk about concurrency (illusion of concurrency) with such systems; because the task switches are so fast.
 
 	Computers with multicore processors are capable of genuinely running more than one task in parallel.We call this hardware concurrency.
 
@@ -175,10 +171,9 @@ by the operating system.
 
 	2. Concurrency with multiple-threads
 
-	The alternative approach to concurrency is to run multiple threads in a single process.
+	The alternative approach to concurrency is to run multiple threads in a singl process.
 
-	Threads are much like lightweight processes: each thread runs independently of the others,
-	and each thread may run a different sequence of instructions.
+	Threads are much like lightweight processes: each thread runs independently of the others,and each thread may run a different sequence of instructions.
 
 	But all threads in a process share the same address space, and most of the data can be accessed directly from all threads.
 
