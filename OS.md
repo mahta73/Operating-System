@@ -199,9 +199,49 @@ protection, it is unable to provide some important features:
 As processes are loaded and removed from memory, the free memory space is broken into little pieces. It happens after sometimes that processes cannot be allocated to memory blocks considering their small size and memory blocks remains unused.  
 
 For these reasons, most modern processors introduce a level of indirection,
-called virtual addresses.
+called virtual addresses, and this comes from the general idea that any problem in computer science can be solved by adding indirection.
 
-***system calls***
+without virtual memory we don't have indirection.
+
+```
+Program Address = RAM Addreess
+
+An address space is a range of valid addresses in memory that are available for a program or
+process.
+```
+
+with this direct mapping we are going to crash if we try to access more memory.
+
+Virtual memory takes program addresses and maps them to RAM addresses.
+
+```
+Program Address Maps to RAM Address
+```
+
+If we try to access more memory, our program is not going to crash. It's going to know it has to get the data from hard disk.
+
+virtual memory gives us flexibility in how we use the RAM.
+
+***virtual Memory Solves Some Problems***
+1. Not enough memory: When we need it, we bring in into memory.
+
+```
+READING FROM DISK IS SLOWER THAN RAM  
+Remember that disks are slower than RAM.  
+Any time you can't fit your data in memory and have to go to disk you pay a HUGE performance penalty!  
+That is why buying more RAM makes your computer faster.  
+```  
+2. Holes in the address space: WE can map a program's addresses to RAM addresses however we like.
+
+3. Keeping programs secure: Programs addresses map to different RAM addresses so they can not touch each others data. (Process isolation).  
+
+```
+Each program has its own mapping.  
+```
+
+4. Share Data: We can use the same mapping to allow programs to share data by simply having their maps point to the same data.  
+
+***System Calls***
 
 system calls provide the interface between a running program and the operating system.
 Three general methods are used to pass parameters between a running program
