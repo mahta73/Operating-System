@@ -103,7 +103,10 @@ A very simple, safe, and entirely hypothetical approach would be to have the ope
 Instead of the processor directly executing instructions, each instruction in a user program would be fetched, decoded, and executed by a software interpreter.
 
 ```
-Interpreter (computing) In computer science, an interpreter is a computer program that directly executes, i.e. performs, instructions written in a programming or scripting language, without requiring them previously to have been compiled into a machine language program.
+Interpreter (computing) In computer science, an interpreter is a computer program
+that directly executes, i.e. performs, instructions written in a programming
+or scripting language, without requiring them previously to have been compiled
+into a machine language program.
 ```
 
 Before each instruction is executed, the interpreter could check to see if the process had permission to do the operation. The interpreter could allow all legal operations while halting any application that overstepped its bounds.  
@@ -138,15 +141,18 @@ At a minimum, the hardware must support three things:
 	system kernel (that is, in effect, becoming the kernel) at these fixed locations,
 	an application process cannot be allowed to change its privilege level.
 
-	```
-	The application cannot be allowed to change the set of memory locations it can access
-	Another limitation on applications is that they cannot disable processor interrupts.
+```
+The application cannot be allowed to change the set of memory locations it can access
+Another limitation on applications is that they cannot disable processor interrupts.
 
-	What happens if an application attempts to access memory it shouldn’t or
-	attempts to change its privilege level?   
-	Such actions cause a processor exception.
-	Interpreter (computing) In computer science, an interpreter is a computer program that directly executes, i.e. performs, instructions written in a programming or scripting language, without requiring them previously to have been compiled into a machine language program.  
-	```
+What happens if an application attempts to access memory it shouldn’t or
+attempts to change its privilege level?    
+Such actions cause a processor exception.  
+Interpreter (computing) In computer science, an interpreter is a computer program
+that directly executes, i.e. performs, instructions written in a programming or
+scripting language, without requiring them previously to have been compiled into a
+machine language program.
+```
 
 2. Memory protection: All memory accesses outside of a process’s valid
 memory region are prohibited when executing in user-mode.
@@ -186,11 +192,11 @@ The operating system kernel executes without the base and bounds registers
 Although the base and bounds mechanism is sufficient for implementing
 protection, it is unable to provide some important features:  
 
-	1. Expandable heap and stack.  
-	2. Memory sharing.  
-	3. Non-relative memory addresses.  
-	4. Memory fragmentation.  
-	As processes are loaded and removed from memory, the free memory space is broken into little pieces. It happens after sometimes that processes cannot be allocated to memory blocks considering their small size and memory blocks remains unused.  
+1. Expandable heap and stack.  
+2. Memory sharing.  
+3. Non-relative memory addresses.  
+4. Memory fragmentation.  
+As processes are loaded and removed from memory, the free memory space is broken into little pieces. It happens after sometimes that processes cannot be allocated to memory blocks considering their small size and memory blocks remains unused.  
 
 For these reasons, most modern processors introduce a level of indirection,
 called virtual addresses.
