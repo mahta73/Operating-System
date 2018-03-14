@@ -57,6 +57,6 @@
       cout << &array_1[i] << endl;
     }
 
-  
+
     return 0;
   }

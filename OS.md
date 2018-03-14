@@ -353,6 +353,7 @@ For example, two independent applications may both want to access the same disk 
 The operating system must regulate these accesses.  
 2. Processes indirectly aware of each other: These are processes that are not necessarily aware of each other by their respective process IDs but that share access to some object, such as I/O buffer. Such processes exhibit cooperation in sharing the common object.  
 3. Processes directly aware of each other: These are processes that are able to communicate with each other by process ID and that are designed to work jointly on some activity. Again, such processes exhibit cooperation.  
+
 ***Some Key Terms Related To Concurrency***
 
 1. Atomic Operation: A sequence of one or more statements that appears to be indivisible; that is, no other process can see an intermediate state or interrupt the operation.    
@@ -367,17 +368,27 @@ It is necessary to protect shared resources and that the only way to do that is 
 ```
 In concurrent computing, a deadlock is a state in which each member of a group of actions, is waiting for some other member to release a lock
 
-A livelock is similar to a deadlock, except that the states of the processes involved in the livelock constantly change with regard to one another, none progressing. Livelock is a special case of resource starvation; the general definition only states that a specific process is not progressing.
+A livelock is similar to a deadlock, except that the states of the processes
+involved in the livelock constantly change with regard to one another, none progressing.
+Livelock is a special case of resource starvation; the general definition only states
+that a specific process is not progressing.  
 
-A real-world example of livelock occurs when two people meet in a narrow corridor, and each tries to be polite by moving aside to let the other pass, but they end up swaying from side to side without making any progress because they both repeatedly move the same way at the same time.
+A real-world example of livelock occurs when two people meet in a narrow corridor,
+and each tries to be polite by moving aside to let the other pass, but they end up
+swaying from side to side without making any progress because they both repeatedly
+move the same way at the same time.
 
-Livelock is a risk with some algorithms that detect and recover from deadlock. If more than one process takes action, the deadlock detection algorithm can be repeatedly triggered. This can be avoided by ensuring that only one process (chosen randomly or by priority) takes action.
+Livelock is a risk with some algorithms that detect and recover from deadlock.
+If more than one process takes action, the deadlock detection algorithm can be
+repeatedly triggered. This can be avoided by ensuring that only one process
+(chosen randomly or by priority) takes action.
 ```
 ***Semaphore***
 
 In programming, especially in Unix systems, semaphores are a technique for   coordinating or synchronizing activities in which multiple processes compete for the same operating system resources.
 
 Semaphore is a simply a variable.
+
 ***Sleeping Barber Problem***
 
 In computer science, the sleeping barber problem is a classic inter-process
