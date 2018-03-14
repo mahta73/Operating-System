@@ -366,10 +366,12 @@ It is necessary to protect shared resources and that the only way to do that is 
 7. Starvation: A situation in which a runnable process is overlooked indefinitely by the scheduler; although it is able to proceed, it is never chosen.
 
 ```
-In concurrent computing, a deadlock is a state in which each member of a group of actions, is waiting for some other member to release a lock
+In concurrent computing, a deadlock is a state in which each member of a group of
+actions, is waiting for some other member to release a lock.
 
 A livelock is similar to a deadlock, except that the states of the processes
-involved in the livelock constantly change with regard to one another, none progressing.
+involved in the livelock constantly change with regard to one another,
+none progressing.  
 Livelock is a special case of resource starvation; the general definition only states
 that a specific process is not progressing.  
 
