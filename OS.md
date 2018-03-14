@@ -290,6 +290,7 @@ process:
 1. exceptions
 2. interrupts
 3. system calls.
+
 ***What is concurrency?***
 
 At the simplest and most basic level, concurrency is about two or more separate
@@ -331,7 +332,52 @@ The number of hardware threads (The measure of how many independent tasks the ha
 	```
 	thread1 -> shared memory <- thread2
 	```
+***Issues Raised By The Existence Of Concurrency***
 
+1. The operating system must be able to keep track of the various processes. This is done with the use of process control blocks.  
+2. The operating system must allocate and deallocate resources for each active process. At times, multiple processes want access to the same resource.  
+These resources include:
+	1. Processor time: CPU time (or process time) is the amount of time for which a CPU was used for processing instructions of a computer program or operating system, as opposed to, for example, waiting for input/output (I/O) operations or entering low-power (idle) mode.
+	2. Memory  
+	3. Files  
+	4. I/O devices  
+3. The operating system must protect the data and physical resources of each process
+against unintended interference by other processes.
+4. The functioning of a process must be independent of the speed at which its execution is carried out relative to the speed of other concurrent processes.  
+To understand how the issue of speed independence can be addressed, we need to
+look at the ways in which processes can interact.
+
+***Process Interaction***
+1. Processes unaware of each other: These are independent processes that are not intended to work together.Although the processes are not working together, the operating system needs to be concerned about competition for resources.  
+For example, two independent applications may both want to access the same disk or file or printer.    
+The operating system must regulate these accesses.  
+2. Processes indirectly aware of each other: These are processes that are not necessarily aware of each other by their respective process IDs but that share access to some object, such as I/O buffer. Such processes exhibit cooperation in sharing the common object.  
+3. Processes directly aware of each other: These are processes that are able to communicate with each other by process ID and that are designed to work jointly on some activity. Again, such processes exhibit cooperation.  
+***Some Key Terms Related To Concurrency***
+
+1. Atomic Operation: A sequence of one or more statements that appears to be indivisible; that is, no other process can see an intermediate state or interrupt the operation.    
+2. Critical Section: A section of code within a process that requires access to shared resources and that must not be executed while another process is in a corresponding section of code.  
+3. Deadlock: A situation in which two or more processes are unable to proceed because each is waiting for one of the others to do something.  
+4. Livelock: A situation in which two or more processes continuously change their states in response to change in the other process(es) without doing any useful work. (Livelock is a condition in which you will continuing having deadlocks even after a reset)       
+5. Mutual exclusion: The requirement that when one process is in a critical section that accesses shared resources, no other process may be in a critical section that accesses any of those shared resources.    
+6. Race Condition: A situation in which multiple threads or processes read and write a shared data item and the final result depends on the relative timing of their execution.  
+It is necessary to protect shared resources and that the only way to do that is to control the code that access the variable.    
+7. Starvation: A situation in which a runnable process is overlooked indefinitely by the scheduler; although it is able to proceed, it is never chosen.
+
+```
+In concurrent computing, a deadlock is a state in which each member of a group of actions, is waiting for some other member to release a lock
+
+A livelock is similar to a deadlock, except that the states of the processes involved in the livelock constantly change with regard to one another, none progressing. Livelock is a special case of resource starvation; the general definition only states that a specific process is not progressing.
+
+A real-world example of livelock occurs when two people meet in a narrow corridor, and each tries to be polite by moving aside to let the other pass, but they end up swaying from side to side without making any progress because they both repeatedly move the same way at the same time.
+
+Livelock is a risk with some algorithms that detect and recover from deadlock. If more than one process takes action, the deadlock detection algorithm can be repeatedly triggered. This can be avoided by ensuring that only one process (chosen randomly or by priority) takes action.
+```
+***Semaphore***
+
+In programming, especially in Unix systems, semaphores are a technique for   coordinating or synchronizing activities in which multiple processes compete for the same operating system resources.
+
+Semaphore is a simply a variable.
 ***Sleeping Barber Problem***
 
 In computer science, the sleeping barber problem is a classic inter-process
