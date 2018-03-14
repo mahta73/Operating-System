@@ -14,7 +14,6 @@
   #include <algorithm>
   // Vectors are sequence containers representing arrays that can change in size.
   #include <vector>
-  #include <thread>
 
   using namespace std;
 

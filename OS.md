@@ -280,6 +280,16 @@ printf ( ‘ ‘ procedure local address : %x , value : % d \ n ’ ’ , & loca
 > static address : 5328 , value : 1
 > procedure local address : ffffffe2 , value : 1
 ```
+
+***Safe control transfer***
+
+##### User to kernel mode
+
+There are three reasons for why the kernel will take control from a user
+process:  
+1. exceptions
+2. interrupts
+3. system calls.
 ***What is concurrency?***
 
 At the simplest and most basic level, concurrency is about two or more separate
