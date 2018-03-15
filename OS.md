@@ -360,7 +360,72 @@ The operating system must regulate these accesses.
 2. Critical Section: A section of code within a process that requires access to shared resources and that must not be executed while another process is in a corresponding section of code.  
 3. Deadlock: A situation in which two or more processes are unable to proceed because each is waiting for one of the others to do something.  
 4. Livelock: A situation in which two or more processes continuously change their states in response to change in the other process(es) without doing any useful work. (Livelock is a condition in which you will continuing having deadlocks even after a reset)       
-5. Mutual exclusion: The requirement that when one process is in a critical section that accesses shared resources, no other process may be in a critical section that accesses any of those shared resources.    
+5. Mutual exclusion: The requirement that when one process is in a critical section that accesses shared resources, no other process may be in a critical section that accesses any of those shared resources.
+
+```
+Illustration of Mutual Exclusion
+
+NOTE_: To enforce mutual exclusion, two functions are provided: entercritical and
+exitcritical.
+Each function takes as an argument the name of the resource that is the subject of
+competition. Any process that attempts to enter its critical section while another
+process is in its critical section, for the same resource, is maid to wait.
+
+process one
+void p1 {
+	while(true) {
+		// preceding code ;
+		entercritical (ra);
+		// critical section;
+		exitcritical (ra);
+		// following code;
+	}
+}
+
+process Two
+void p2 {
+	while(true) {
+		// preceding code ;
+		entercritical (ra);
+		// critical section;
+		exitcritical (ra);
+		// following code;
+	}
+}
+
+process Three
+void p3 {
+	while(true) {
+		// preceding code ;
+		entercritical (ra);
+		// critical section;
+		exitcritical (ra);
+		// following code;
+	}
+}
+```
+
+The enforcement of mutual exclusion creates two additional control problems:
+
+  	1. Deadlock: Consider two processes, P1 and P2, and two resources, R1 and R2.
+		Suppose that each process needs access to both resources to perform part of its
+		function. Then it is possible to have the following situation: the operating
+		system assigns R1 to P2, and R2 to P1. Each process is waiting for one of the
+		two resources. Neither will release the resource that it already owns until it
+		has acquired the other resource and performed the function requiring both
+		resources. The two processes are deadlocked.
+
+		2. Starvation: Suppose that three processes (P1, P2, P3) each require access to
+		resource R. Consider the situation in which P1 is sin possession of the resource,
+		and both P2 and P3 are delayed, waiting for that resource. When P1 exits its
+		critical section, either P2 or P3 should be allowed access to R. Assume that the
+		operating system grants access to P3 and that P1 again requires access before P3
+		completes its critical section. If operating system grants access to P1 after P3
+		has finished, and subsequently alternately grants access to P1 and P3, then P2 may
+		indefinitely be denied access to the resource, even though there is no deadlock
+		situation.
+
+
 6. Race Condition: A situation in which multiple threads or processes read and write a shared data item and the final result depends on the relative timing of their execution.  
 It is necessary to protect shared resources and that the only way to do that is to control the code that access the variable.    
 7. Starvation: A situation in which a runnable process is overlooked indefinitely by the scheduler; although it is able to proceed, it is never chosen.

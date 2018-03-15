@@ -52,3 +52,5 @@ $ ./Your_program
 5. http://informatik.unibas.ch/uploads/media/cs201-20131018c-2up.pdf
 6. https://www.youtube.com/channel/UCQ-W1KE9EYfdxhL6S4twUNw
 7. https://en.wikipedia.org/wiki/Sleeping_barber_problem
+8. http://www.cs.iit.edu/~cs561/cs450/disksched/disksched.html
+9. https://www.slideshare.net/myrajendra/sstf-scheduling50
