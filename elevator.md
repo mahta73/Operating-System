@@ -77,9 +77,42 @@ for_each_element_in_queue() {
 ```
 
 3. SCAN (Elevator)  
-4. C-SCAN (Circular SCAN)  
+
+It scans down towards the nearest end and then when it hits the bottom it scans up
+servicing the requests that it didn't get going down. If a request comes in after
+it has been scanned it will not be serviced until the process comes back down or moves back up.
+
+4. C-SCAN (Circular SCAN)
+
+This algorithm ensures that the jobs are serviced only in a single direction.  
+disk head from one end of the disk to the other end of the disk.  
+While moving from one end to another end, the disk head serviced the requests along the way.    
+As soon as the disk head reached the other end, it immediately returns to the beginning
+of the disk without servicing any requests while on the path to return to the starting position.
+
+Advantages:    
+  1. Better optimization of Disk Input/Output.  
+  2. Provides more uniform waiting time as compared to SCAN algorithm.  
+Disadvantages:  
+  1. There is a possibility of job starvation in some scenarios.  
+
 5. LOOK  
+
+The LOOK algorithm is the same as the SCAN algorithm in that it also honors requests
+on both sweep direction of the disk head, however, this algorithm "Looks" ahead to see
+if there are any requests pending in the direction of head movement. If no requests
+are pending in the direction of head movement, then the disk head traversal will be
+reversed to the opposite direction and requests on the other direction can be served.
+
 6. C-LOOK  
+
+Circular LOOK is like a C-SCAN which uses a return sweep before processing a set of disk
+requests.  
+It does not reach the end of the tracks unless there is a request, either read or write on
+such disk location similar with the LOOK algorithm.  
+The disk head also goes as far as the last request in its direction then reverses its direction
+immediately without first going all the way to the end of the disk.
+
 
 ```
 The most important is to make sure every order is followed, that there is no starvation.
