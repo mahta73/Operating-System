@@ -1,4 +1,3 @@
-
 ***What is an operating system?***
 
 An operating system is the layer of software that  manages a computer’s resources for its users and their applications.
@@ -16,7 +15,8 @@ An operating system is the layer of software that  manages a computer’s resour
 ***Sharing raises several challenges for an operating system:***
 
 1. Resource Allocation.  
-	1. Time Multiplexing: Programs or users take turns i.e. only one at a time.     	Example:Printer.  
+	1. Time Multiplexing: Programs or users take turns i.e. only one at a time.       	
+	Example:Printer.  
 	2. Space Multiplexing: Instead of completing one by one, each one get some 	part of the resource.    
 	Example:Main Memory  
 2. Isolation.  
@@ -262,25 +262,6 @@ as a parameter in a register
 3. push (store) the parameters onto the stack by the program, and pop off the stack
 by the operating system.
 
-
-```
-LETS CODE :)
-
-int staticVar = 0;
-main () {
-int localVar = 0;
-/* a static variable */
-/* a procedure local variable */
-staticVar += 1;
-localVar += 1;
-sleep (10); /* this causes the program to wait for 10 seconds */
-printf ( ‘ ‘ static address : %x , value : % d \ n ’ ’ , & staticVar , staticVar );
-printf ( ‘ ‘ procedure local address : %x , value : % d \ n ’ ’ , & localVar , localVar );
-}
-> static address : 5328 , value : 1
-> procedure local address : ffffffe2 , value : 1
-```
-
 ***Safe control transfer***
 
 ##### User to kernel mode
@@ -358,7 +339,81 @@ The operating system must regulate these accesses.
 
 1. Atomic Operation: A sequence of one or more statements that appears to be indivisible; that is, no other process can see an intermediate state or interrupt the operation.    
 2. Critical Section: A section of code within a process that requires access to shared resources and that must not be executed while another process is in a corresponding section of code.  
-3. Deadlock: A situation in which two or more processes are unable to proceed because each is waiting for one of the others to do something.  
+3. Deadlock: A situation in which two or more processes are unable to proceed because each is waiting for one of the others to do something.
+
+How to prevent a deadlock?  
+
+	1. Lock ordering:
+	Deadlock occurs when multiple threads need the same locks but obtain them in different order.  
+	If you make sure that all locks are always taken in the same order by any thread, deadlocks cannot occur.  
+	```
+	Look at this example:  
+	Thread 1:
+
+  lock A
+  lock B
+
+	Thread 2:
+
+   wait for A
+   lock C (when A locked)
+
+	Thread 3:
+
+   wait for A
+   wait for B
+   wait for C
+	```
+	Lock ordering is a simple yet effective deadlock prevention mechanism.  
+	However, it can only be used if you know about all locks needed ahead of taking any of the locks.  
+	This is not always the case.  
+
+	2. Lock timeout:   
+	Another deadlock prevention mechanism is to put a timeout on lock attempts meaning a thread trying to
+	obtain a lock will only try for so long before giving up. If a thread does not succeed in taking all
+	necessary locks within the given timeout, it will backup, free all locks taken, wait for a random amount
+	of time and then retry.  
+
+	```
+	Thread 1 locks A
+	Thread 2 locks B
+
+	Thread 1 attempts to lock B but is blocked
+	Thread 2 attempts to lock A but is blocked
+
+	Thread 1's lock attempt on B times out
+	Thread 1 backs up and releases A as well
+	Thread 1 waits randomly (e.g. 257 millis) before retrying.
+
+	Thread 2's lock attempt on A times out
+	Thread 2 backs up and releases B as well
+	Thread 2 waits randomly (e.g. 43 millis) before retrying.
+	```  
+	3. DeadLock Detection:  
+	Deadlock detection is a heavier deadlock prevention mechanism aimed at cases in which lock ordering isn't possible,
+	and lock timeout isn't feasible.
+
+	When a thread requests a lock but the request is denied, the thread can traverse the lock graph to check for deadlocks.  
+	For instance, if a Thread A requests lock 7, but lock 7 is held by Thread B, then Thread A can check if Thread B has requested
+	any of the locks Thread A holds (if any). If Thread B has requested so, a deadlock has occurred (Thread A having taken lock 1,
+	requesting lock 7, Thread B having taken lock 7, requesting lock 1).    
+
+	Of course a deadlock scenario may be a lot more complicated than two threads holding each others locks.  
+	Thread A may wait for Thread B, Thread B waits for Thread C, Thread C waits for Thread D, and Thread D waits for Thread A.  
+	In order for Thread A to detect a deadlock it must transitively examine all requested locks by Thread B.  
+	From Thread B's requested locks Thread A will get to Thread C, and then to Thread D, from which it finds one of the locks Thread
+	A itself is holding. Then it knows a deadlock has occurred.  
+
+	One possible action is to release all locks, backup, wait a random amount of time and then retry.   
+	This is similar to the simpler lock timeout mechanism except threads only backup when a deadlock has actually occurred.  
+	Not just because their lock requests timed out. However, if a lot of threads are competing for the same locks they may
+	repeatedly end up in a deadlock even if they back up and wait.  
+
+	A better option is to determine or assign a priority of the threads so that only one (or a few) thread backs up.  
+	The rest of the threads continue taking the locks they need as if no deadlock had occurred.  
+	If the priority assigned to the threads is fixed, the same threads will always be given higher priority.  
+	To avoid this you may assign the priority randomly whenever a deadlock is detected.  
+
 4. Livelock: A situation in which two or more processes continuously change their states in response to change in the other process(es) without doing any useful work. (Livelock is a condition in which you will continuing having deadlocks even after a reset)       
 5. Mutual exclusion: The requirement that when one process is in a critical section that accesses shared resources, no other process may be in a critical section that accesses any of those shared resources.
 
@@ -370,44 +425,12 @@ exitcritical.
 Each function takes as an argument the name of the resource that is the subject of
 competition. Any process that attempts to enter its critical section while another
 process is in its critical section, for the same resource, is maid to wait.
-
-process one
-void p1 {
-	while(true) {
-		// preceding code ;
-		entercritical (ra);
-		// critical section;
-		exitcritical (ra);
-		// following code;
-	}
-}
-
-process Two
-void p2 {
-	while(true) {
-		// preceding code ;
-		entercritical (ra);
-		// critical section;
-		exitcritical (ra);
-		// following code;
-	}
-}
-
-process Three
-void p3 {
-	while(true) {
-		// preceding code ;
-		entercritical (ra);
-		// critical section;
-		exitcritical (ra);
-		// following code;
-	}
-}
 ```
+
 
 The enforcement of mutual exclusion creates two additional control problems:
 
-  	1. Deadlock: Consider two processes, P1 and P2, and two resources, R1 and R2.
+		1. Deadlock: Consider two processes, P1 and P2, and two resources, R1 and R2.
 		Suppose that each process needs access to both resources to perform part of its
 		function. Then it is possible to have the following situation: the operating
 		system assigns R1 to P2, and R2 to P1. Each process is waiting for one of the

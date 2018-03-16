@@ -117,3 +117,19 @@ immediately without first going all the way to the end of the disk.
 ```
 The most important is to make sure every order is followed, that there is no starvation.
 ```
+
+***Mutual exclusion***
+
+In computer science, mutual exclusion is a property of concurrency control, which is  
+instituted for the purpose of preventing race conditions; it is the requirement that one  
+thread of execution never enter its critical section at the same time that another  
+concurrent thread of execution enters its own critical section.  
+The problem which mutual exclusion addresses is a problem of resource sharing.  
+
+A successful solution to must have at least these two properties:
+
+  1. It must implement mutual exclusion: only one process can be in the critical section
+  at a time.  
+  2. It must be free of deadlocks: if processes are trying to enter the critical section,
+  one of them must eventually be able to do so successfully, provided no process stays in
+  the critical section permanently.  
