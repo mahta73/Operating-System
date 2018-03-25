@@ -475,9 +475,64 @@ repeatedly triggered. This can be avoided by ensuring that only one process
 ```
 ***Semaphore***
 
-In programming, especially in Unix systems, semaphores are a technique for   coordinating or synchronizing activities in which multiple processes compete for the same operating system resources.
+In programming, especially in Unix systems, semaphores are a technique for coordinating or synchronizing activities in which multiple processes compete for the same operating system resources.
 
-Semaphore is a simply a variable.
+Semaphore is an integer value used for signaling among processes.  
+Only three operations may be performed on a semaphore, all of which are atomic:
+initialize, decrement, and increment.  
+The decrement operation may result in the blocking of a process, and the increment operations
+may result in the unblocking of a process.  
+
+```
+PRIMITIVE SEMAPHORE:
+		struct semaphore {
+		int count;
+		queueType queue;
+	};
+
+	void waint (semaphore s) {
+		s.count--;
+		if (s.count < 0) {
+		place this process in s.queue
+		block this process
+		}
+	}
+
+	void signal (semaphore s) {
+		s.count++;
+		if (count <= 0) {
+			remove a process from s.queue
+			place the process on the ready list
+		}
+ }
+```
+
+Binary semaphore is a semaphore that takes on only the value 0 and 1.
+
+```
+BINARY SEMAPHORE:
+
+struct binary_semaphore {
+	 enum {zero, one} value;
+	 queueType queue;
+}
+
+void waint(binary_semaphore s) {
+	 if (s.value = 1) s.value = 0;
+	 else {
+		 remove a process from s.queue
+		 place process on the ready list
+	 }
+}
+
+void signal (binary_semaphore s) {
+	 if (s.queue is empty()) s.value = 1;
+	 else {
+	 remove a process from s.queue
+	 place process on ready list
+ }
+}
+```
 
 ***Sleeping Barber Problem***
 
@@ -520,7 +575,7 @@ the waiting room, and both attempt to occupy the single chair.
 
 Many possible solutions are available. The key element of each is a mutex, which ensures that only one of the participants can change state at once. The barber must acquire this mutual exclusion before checking for customers and release it when they begin either to sleep or cut hair. A customer must acquire it before entering the shop and release it once they are sitting in either a waiting room chair or the barber chair, and also when they leave the shop because no seats were available. This eliminates both of the problems mentioned in the previous section. A number of semaphores is also required to indicate the state of the system. For example, one might store the number of people in the waiting room.
 
-The following pseudocode guarantees synchronization between barber and customer and is deadlock free, but may lead to starvation of a customer. The problem of starvation can be solved by utilizing a queue where customers are added as they arrive, so that barber can serve them on a first come first served basis (FIFO => First In, First Out) The functions wait() and signal() are functions provided by the semaphores. In c-code notation, a wait() is a P() and a signal() is a V().
+The following pseudocode guarantees synchronization between barber and customer and is deadlock free, but may lead to starvation of a customer. The problem of starvation can be solved by utilizing a queue where customers are added as they arrive, so that barber can serve them on a first come first served basis (FIFO => First In, First Out) The functions wait() and signal() are functions provided by the semaphores.
 
 ```
 # The first two are mutexes (only 0 or 1 possible)
