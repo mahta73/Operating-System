@@ -534,6 +534,87 @@ void signal (binary_semaphore s) {
 }
 ```
 
+```
+MUTUAL EXCLUSION USING SEMAPHORES
+
+const int n = /* number of processes */
+semaphore s = 1;
+
+void P(int i) {
+	while (true) {
+		semwait(s);
+		 // critical section
+		semsignal(s);
+		 // reminder
+	}
+}
+
+int main() {
+	parbegin(P(1), P(2), ..., P(n));
+}
+```
+***The Producer/ Consumer Problem***
+
+The general statement is this:  
+There are one or more producers generating some type of data and placing these in a buffer.  
+There is a single consumer that is taking items out of the buffer one at a time.  
+Only one agent (producer or consumer) may access the buffer at any one time.  
+The problem is to make sure that the producer won't try to add data into the buffer if it's
+full and the consumer won't try to remove data from an empty buffer.  
+
+To begin, let us assume that the buffer is infinite and consists of a linear array of elements.
+
+```
+producer:
+
+while (ture) {
+	// produce the item v
+	buffer[in] = v;
+	in ++;
+}
+```
+
+```
+consumer:
+
+while (true) {
+	if (out >= in) // ???????????
+		// do nothing
+	w = buffer[out];
+	out++;
+	// consume item v
+}
+```
+
+```
+Solution to the infinite-buffer producer/consumer problem using SEMAPHORES
+
+semaphore n = 0, s = 1;
+
+void producer() {
+	while (true) {
+		produce();
+		wait(s);
+		append();
+		signal(s);
+		signal(n);
+	}
+}
+
+void consumer() {
+	while (true) {
+		wait(n);
+		wait(s);
+		take();
+		signal(s);
+		consume();
+	}
+}
+
+void main() {
+	parbegin (producer, consumer);
+}
+```
 ***Sleeping Barber Problem***
 
 In computer science, the sleeping barber problem is a classic inter-process

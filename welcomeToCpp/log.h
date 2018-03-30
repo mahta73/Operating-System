@@ -16,6 +16,10 @@
     std::cout << message << std::endl;
   }
 
+  static void LogNumber(int number) {
+    std:: cout << number << std::endl;
+  }
+
   static void LogGoodBye() {
     std::cout << "Goodbye for a while" << std::endl;
   }

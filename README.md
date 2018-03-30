@@ -54,3 +54,4 @@ $ ./Your_program
 7. https://en.wikipedia.org/wiki/Sleeping_barber_problem
 8. http://www.cs.iit.edu/~cs561/cs450/disksched/disksched.html
 9. https://www.slideshare.net/myrajendra/sstf-scheduling50
+10. https://www.studytonight.com/operating-system/process-synchronization
