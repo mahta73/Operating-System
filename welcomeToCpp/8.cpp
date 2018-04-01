@@ -18,5 +18,15 @@
       if ( !(i < 20) ) condition = false;
     }
 
+    Log("---------------------------------");
+
+    return 0; // the end of the main function
+    // dead code: 
+    for (int i = 0; i < 10; i++) {
+      if ( i % 2 == 0) continue;
+      if ( i == 9) continue;
+      LogNumber(i);
+    }
+
     std::cin.get();
   }
