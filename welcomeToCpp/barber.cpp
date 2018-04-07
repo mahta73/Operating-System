@@ -1,18 +1,20 @@
   #include <iostream>
   #include <thread>
+  #include <condition-variable>
   #include <mutex>
 
   class semaphore {
   public:
     int count;
     // how to initialize the count of queue from constructor
-    int queue[10];
+    int* queue;
     int index;
 
   public:
-    semaphore(const int count) {
+    semaphore(const int count, const int queueCount) {
       index = 0;
       this.count = count;
+      queue = new queue[queueCount];
     };
 
     void s_wait() {

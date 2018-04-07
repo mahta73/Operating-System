@@ -20,6 +20,34 @@
     Log(string);
   }
 
+  class Entity {
+  public:
+    int getX() const { // this only works in a class by the way
+      m_y = 10;
+      return m_x;
+    }
+
+    const int* const getXpointer() const {
+      return m_px;
+    }
+
+    void setX(int x) {
+      m_x = x;
+    }
+
+  private:
+    // mutable in c++ means it can be changed
+    // we can modify mutable variables even in const methods
+    mutable int m_y;
+    int m_x;
+    const int *m_px, *m_py;
+  };
+
+  // you cannot modify Entity because of const
+  void PrintEntity(const Entity& e) {
+    Log(e.getX()); // if getX was not a constant, it would be an error
+  }
+
   int main() {
     // char is byte of memory
     // utf-16 -> 16-bit character coding (2^16)
@@ -89,10 +117,20 @@
     // however you cannot reassign the actual pointer
     int* const c = new int;
     *c = 15;
-    
+
     Log(c);
     Log(*c);
 
+    // You can write the 'const' twice
+
+    const int* const d = new int(15);
+
+    Log(d);
+    Log(*d);
+
+    Entity entity;
+    entity.setX(10000);
+    PrintEntity(entity);
 
     std::cin.get();
   }
