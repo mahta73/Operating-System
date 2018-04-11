@@ -1,44 +1,18 @@
   #include <iostream>
   #include <thread>
-  #include <condition-variable>
   #include <mutex>
 
-  class semaphore {
-  public:
-    int count;
-    // how to initialize the count of queue from constructor
-    int* queue;
-    int index;
+  // 0 -> busy, 1 -> free
+  static int barber = 1;
+  // 4 seats;
+  static accessWRSeats = 1;
+  static int watingRoom[4];
 
-  public:
-    semaphore(const int count, const int queueCount) {
-      index = 0;
-      this.count = count;
-      queue = new queue[queueCount];
-    };
-
-    void s_wait() {
-      count--;
-      if (count < 0) {
-        if (index < 10) {
-          queue[index] = // the process;
-          index++;
-        }
-      }
-    };
-
-    void s_signal() {
-      count ++;
-      if (count <= 0) {
-        // take out from queue
-        index--;
-      }
-    };
-  };
-
-  int numberOfFreeWRSeats = 4;
+  void Barber() {};
+  void Customer() {};
   int main() {
 
+    std::cin.get();
   }
 
   /*
