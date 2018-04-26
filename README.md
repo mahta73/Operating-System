@@ -1,34 +1,58 @@
-# Operating-System
-basics  of OS, multithreading in c++
+Operating system’s concepts are among both the most significant and complicated in all of computer science. In
+other words, operating system is the most important software that runs on a computer. It manages the computer's
+memory and processes, as well as all of its software and hardware. It also allows you to communicate with the
+computer without knowing how to speak the computer's language. It is clearly understood that without an
+operating system a computer is in vain.
 
-## Why I chose Operating system?
+Operating system manages all of the software and hardware on the computer. Most of the time, there are several
+different computer programs running at the same time, and they all need to access your computer's central
+processing unit (CPU), memory, and storage. The operating system coordinates all of this to make sure each
+program gets what it desires.
 
-There has been a huge amount of innovation in both the principles and practice
-of operating systems over the past two decades.
+Operating system typically do the following:
 
-I believe the concepts and principles of operating system are important for anyone getting a degree in computer science or computer engineering.
+  Booting: Booting is a process of starting the computer operating system starts the computer to work. ...
 
-The core ideas in operating systems protection, concurrency, virtualization, resource allocation, and reliable storage are widely used throughout computer science.
+  manage the computer's resources, such as the central processing unit, memory, disk drives, and printers.
 
-Anyone trying to build resilient, secure, flexible computer systems needs to have a deep grounding in these topics and to be able to apply these concepts in a variety of settings.    
-This is especially true in a modern world where nearly everything a user does is distributed, and nearly every computer is multi-core.
+  establish a user interface.
 
-Operating systems concepts are popping up in many different areas; even web browsers and cloud computing platforms have become mini-operating systems in their own right.
+  execute and provide services for applications software.
 
-Today, smartphones , phones capable of running independent third party applications , are the fastest growing part of the mobile phone business. These new devices require much more complete operating systems, with sophisticated resource management, multi-tasking, security and failure isolation.
+  Loading and Execution.
 
-Likewise, automobiles are increasingly software controlled, raising a host of operating system issues.
+  Data security.
 
-Can anyone write software for your car?  
-What if the software fails while you are driving down the highway?  
-How might the operating system of your car be designed to prevent a computer virus from
-hijacking control of your car’s computers?  
+  Disk Management.
 
-Although this might seem far fetched, researchers recently demonstrated that they could remotely turn off a car’s braking system through a computer virus introduced into the car’s computers through a hacked car radio.
+  Process Management.
 
-A goal of this thesis is to explain how to build more reliable and secure computer systems in a variety of contexts.
+  Device Controlling.
 
-Precisely because operating systems concepts are among the most difficult in all of computer science, it is also important to understand how these ideas are applied in practice in real operating systems of today.
+  Printing controlling.
+
+It is also vital to comprehend how these ideas are applied in practice in real operating systems of today.
+There has been a massive amount of innovation in both the principles and practice of operating systems over the
+past two decades. The core ideas in operating systems protection, concurrency, virtualization, resource
+allocation, and reliable storage are widely used throughout computer science. I believe the concepts and
+principles of operating system are important for anyone getting a degree in computer science or computer
+engineering.
+
+Anyone trying to construct resilient, secure, flexible computer systems needs to have a deep grounding in these
+topics and to be able to apply these concepts in a variety of settings. This is especially true in a modern
+world where almost everything a user does is distributed, and nearly every computer is multi-core.
+
+The fact that operating system’s concepts are popping up in many different areas should not be neglected; even
+web browsers and cloud computing platforms have become mini-operating systems in their own right.
+
+Today, smart-phones are the fastest growing part of the mobile phone business. These new devices require much
+more complete operating systems, with sophisticated resource management, multi-tasking, security and failure
+isolation. Likewise, automobiles are increasingly software controlled, raising a host of operating system
+issues. Researchers recently demonstrated that they could remotely turn off a car’s braking system through a
+computer virus introduced into the car’s computers through a hacked car radio.
+
+To draw a conclusion, in order to have an impact on the world of modern technology, you should definitely
+become a master of both operating System’s functions and characteristics.
 
 ## How to run the program?
 
